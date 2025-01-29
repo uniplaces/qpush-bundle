@@ -94,6 +94,7 @@ class Configuration implements ConfigurationInterface
                     // AWS
                     ->scalarNode('key')->end()
                     ->scalarNode('secret')->end()
+                    ->scalarNode('client')->end()
                     ->scalarNode('region')
                         ->defaultValue('us-east-1')
                     ->end()

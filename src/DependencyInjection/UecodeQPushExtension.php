@@ -170,8 +170,11 @@ class UecodeQPushExtension extends Extension
     {
         $service = sprintf('uecode_qpush.provider.%s', $name);
 
-        if (!$container->hasDefinition($service)) {
+        if (array_key_exists('client', $config)) {
+            return new Reference($config['client']);
+        }
 
+        if (!$container->hasDefinition($service)) {
             $aws2 = class_exists('Aws\Common\Aws');
             $aws3 = class_exists('Aws\Sdk');
             if (!$aws2 && !$aws3) {
@@ -260,7 +263,7 @@ class UecodeQPushExtension extends Extension
     {
         return new Reference('event_dispatcher');
     }
-    
+
     private function createDoctrineClient($config)
     {
         return new Reference($config['entity_manager']);
